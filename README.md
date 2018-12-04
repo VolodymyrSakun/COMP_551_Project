@@ -1,2 +1,12 @@
-# COMP_551_Project
-COMP_551_Project
+mnistFit.py
+
+Fits MNIST dataset 
+
+Classifiers used:
+
+svm with RBF kernel
+MultinomialNB
+XGBClassifier
+LogisticRegression
+KNeighborsClassifier
+RandomForestClassifier
