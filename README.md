@@ -6,4 +6,7 @@ Classifiers used:
 
 svm with RBF kernel, MultinomialNB, XGBClassifier, LogisticRegression, KNeighborsClassifier, RandomForestClassifier
 
+uses functions from utils.py
+
+
 
