@@ -37,10 +37,10 @@ nClasses = len(np.unique(yTrainFull))
 
 xTrain = xTrainFull
 yTrain = yTrainFull
-#xTtrain, yTtrain = utils.cutSet(xTrainFull, yTrainFull, 5000) # for testing
+#xTrain, yTrain = utils.cutSet(xTrainFull, yTrainFull, 1000) # for testing
 
 ###############################################################################
-x, y = utils.cutSet(xTrainFull, yTrainFull, 1000) # for testing
+x, y = utils.cutSet(xTrainFull, yTrainFull, 5000) # for testing
 
 print("Manual grid search RBF SVC")
 cRange = np.linspace(1, 100, 10, dtype=int)
@@ -95,7 +95,7 @@ print('SVC best accuracy: ', scoreSVC['Accuracy'])
 
 ###############################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xTrainFull, yTrainFull, 1000)
+x, y = utils.cutSet(xTrainFull, yTrainFull, 10000)
 
 print("Random Forest") 
 space = np.linspace(2, 20, 19, dtype=int)
@@ -169,7 +169,7 @@ print('XGBClassifier accuracy: ', scoreXG['Accuracy'])
 ###############################################################################
 
 # take random observations to reduce data size
-x, y = utils.cutSet(xTrainFull, yTrainFull, 1000)
+x, y = utils.cutSet(xTrainFull, yTrainFull, 5000)
 
 print("LogisticRegression") 
 space = np.linspace(1, 100, 20, dtype=int)
@@ -219,10 +219,10 @@ print('LogisticRegression best accuracy: ', scoreLR['Accuracy'])
 ###############################################################################
 
 # take random observations to reduce data size
-x, y = utils.cutSet(xTrainFull, yTrainFull, 1000)
+x, y = utils.cutSet(xTrainFull, yTrainFull, 10000)
 
 print("KNeighborsClassifier") 
-space = np.linspace(1, 20, 20, dtype=int)
+space = np.linspace(1, 49, 25, dtype=int)
 accuracy = []
 for i in space:
     classifierKNN = KNeighborsClassifier(n_neighbors=i, weights='uniform',\
