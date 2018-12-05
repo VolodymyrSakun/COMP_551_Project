@@ -4,6 +4,7 @@ import os
 import utils
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from xgboost import XGBClassifier
 from datetime import datetime
 from sklearn import svm
 import pandas as pd
@@ -112,7 +113,7 @@ plt.savefig('{}{}'.format(title, '.png'))
 
 print('Apply best hyperparameter to full dataset')
 classifierRF = RandomForestClassifier(n_estimators=10, criterion='entropy',\
-    max_depth=None, min_samples_split=space[np.argmax(accuracy)], min_samples_leaf=1,\
+    max_depth=None, min_samples_split=space[best_index], min_samples_leaf=1,\
     min_weight_fraction_leaf=0.0, max_features=None, max_leaf_nodes=None,\
     min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True,\
     oob_score=False, warm_start=False, class_weight=None, n_jobs=4)
@@ -121,14 +122,60 @@ yForecastRF = classifierRF.predict(xHogTest)
 scoreRF = utils.getScore(yHogTest, yForecastRF)
 print('RandomForestClassifier best accuracy: ', scoreRF['Accuracy'])
 
-##################################################
+###############################################################################
+
+x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # reduce set size
+
 print("KNeighborsClassifier") 
-classifierKNN = KNeighborsClassifier(n_neighbors=5, weights='uniform',\
+space = np.linspace(1, 20, 19, dtype=int)
+accuracy = []
+for i in space:
+    classifierKNN = KNeighborsClassifier(n_neighbors=i, weights='uniform',\
+        algorithm='auto', leaf_size=30, p=2, metric='minkowski')
+    classifierKNN.fit(x, y)       
+    yForecastKNN = classifierKNN.predict(xHogTest) 
+    scoreKNN = utils.getScore(yHogTest, yForecastKNN)
+    accuracy.append(scoreKNN['Accuracy'])
+    print('{} {} {} {}'.format('n_neighbors=', i, 'Accuracy=', scoreKNN['Accuracy']))
+
+print('Best n_neighbors = ', space[np.argmax(accuracy)])
+
+best_index = np.argmax(accuracy)
+best_score = accuracy[best_index]
+
+# Plot grid search progress
+plt.figure(figsize=(10, 10))
+title = "SVHN. KNeighborsClassifier Grid search evaluating"
+plt.title(title, fontsize=16)
+plt.xlabel("min_samples_split")
+plt.ylabel("Accuracy")
+ax = plt.gca()
+ax.plot(space, accuracy, color='g', alpha=1, label="Test set")
+ax.plot([space[best_index], ] * 2, [0, best_score],
+            linestyle='-.', color='k', marker='x', markeredgewidth=3, ms=8)
+ax.annotate("%0.2f" % best_score,
+                (space[best_index], best_score + 0.005))
+plt.legend(loc='lower left')
+plt.savefig('{}{}'.format(title, '.png'))
+
+print("KNeighborsClassifier") 
+classifierKNN = KNeighborsClassifier(n_neighbors=space[best_index], weights='uniform',\
     algorithm='auto', leaf_size=30, p=2, metric='minkowski')
 classifierKNN.fit(xHogTrainFull, yHogTrainFull)       
 yForecastKNN = classifierKNN.predict(xHogTest) 
 scoreKNN = utils.getScore(yHogTest, yForecastKNN)
 print('KNeighborsClassifier best accuracy: ', scoreKNN['Accuracy'])
 
-
+###############################################################################
+print("XGBoost") 
+classifierXG = XGBClassifier(max_depth=10, learning_rate=0.1, n_estimators=10,\
+    silent=1, objective='multi:softprob', booster='gbtree', num_class=10, eval_metric='merror', \
+    n_jobs=4, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1,\
+    colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1,\
+    scale_pos_weight=1, base_score=0.5, seed=None, missing=None)
+classifierXG.fit(xHogTrainFull, yHogTrainFull)      
+yForecastXG = classifierXG.predict(xHogTest) 
+yForecastProbaXG = classifierXG.predict_proba(xHogTest)
+scoreXG = utils.getScore(yHogTest, yForecastXG)
+print('XGBClassifier accuracy: ', scoreXG['Accuracy'])
 
