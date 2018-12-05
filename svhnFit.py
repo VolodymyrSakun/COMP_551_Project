@@ -20,11 +20,11 @@ xHogTest, yHogTest = utils.rgbToHOG(os.path.join(setDit, 'test_32x32.mat'), pixe
 
 xHogTrain = xHogTrainFull
 yHogTrain = yHogTrainFull
-xHogTrain, yHogTrain = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # for testing
+#xHogTrain, yHogTrain = utils.cutSet(xHogTrainFull, yHogTrainFull, 1000) # for testing
 
 ###############################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 1000)
+x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000)
 
 print("Manual grid search RBF SVC")
 cRange = np.linspace(1, 100, 10, dtype=int)
@@ -78,7 +78,7 @@ print('SVC best accuracy: ', scoreSVC['Accuracy'])
 
 ###################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000)
+x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 50000)
 
 print("Random Forest") 
 space = np.linspace(2, 20, 19, dtype=int)
@@ -127,7 +127,6 @@ scoreRF = utils.getScore(yHogTest, yForecastRF)
 print('RandomForestClassifier best accuracy: ', scoreRF['Accuracy'])
 
 ###############################################################################
-
 x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # reduce set size
 
 print("KNeighborsClassifier") 
