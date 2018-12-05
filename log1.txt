@@ -1,0 +1,188 @@
+runfile('D:/MCGILL/FALL 2018/COMP 551/Project/mnistFit.py', wdir='D:/MCGILL/FALL 2018/COMP 551/Project')
+Manual grid search RBF SVC
+C= 1 Gamma= 0.0001 Accuracy= 0.8307
+C= 1 Gamma= 0.00022 Accuracy= 0.8746
+C= 1 Gamma= 0.00046 Accuracy= 0.8987
+C= 1 Gamma= 0.001 Accuracy= 0.9137
+C= 1 Gamma= 0.00215 Accuracy= 0.9259
+C= 1 Gamma= 0.00464 Accuracy= 0.9407
+C= 1 Gamma= 0.01 Accuracy= 0.9531
+C= 1 Gamma= 0.02154 Accuracy= 0.9567
+C= 1 Gamma= 0.04642 Accuracy= 0.924
+C= 1 Gamma= 0.1 Accuracy= 0.4277
+C= 12 Gamma= 0.0001 Accuracy= 0.9146
+C= 12 Gamma= 0.00022 Accuracy= 0.9215
+C= 12 Gamma= 0.00046 Accuracy= 0.9279
+C= 12 Gamma= 0.001 Accuracy= 0.932
+C= 12 Gamma= 0.00215 Accuracy= 0.9388
+C= 12 Gamma= 0.00464 Accuracy= 0.9494
+C= 12 Gamma= 0.01 Accuracy= 0.9564
+C= 12 Gamma= 0.02154 Accuracy= 0.9583
+C= 12 Gamma= 0.04642 Accuracy= 0.9266
+C= 12 Gamma= 0.1 Accuracy= 0.4798
+C= 23 Gamma= 0.0001 Accuracy= 0.9192
+C= 23 Gamma= 0.00022 Accuracy= 0.9262
+C= 23 Gamma= 0.00046 Accuracy= 0.9275
+C= 23 Gamma= 0.001 Accuracy= 0.9286
+C= 23 Gamma= 0.00215 Accuracy= 0.9384
+C= 23 Gamma= 0.00464 Accuracy= 0.9493
+C= 23 Gamma= 0.01 Accuracy= 0.9564
+C= 23 Gamma= 0.02154 Accuracy= 0.9583
+C= 23 Gamma= 0.04642 Accuracy= 0.9266
+C= 23 Gamma= 0.1 Accuracy= 0.4798
+C= 34 Gamma= 0.0001 Accuracy= 0.923
+C= 34 Gamma= 0.00022 Accuracy= 0.9256
+C= 34 Gamma= 0.00046 Accuracy= 0.9274
+C= 34 Gamma= 0.001 Accuracy= 0.9286
+C= 34 Gamma= 0.00215 Accuracy= 0.9377
+C= 34 Gamma= 0.00464 Accuracy= 0.9493
+C= 34 Gamma= 0.01 Accuracy= 0.9564
+C= 34 Gamma= 0.02154 Accuracy= 0.9583
+C= 34 Gamma= 0.04642 Accuracy= 0.9266
+C= 34 Gamma= 0.1 Accuracy= 0.4798
+C= 45 Gamma= 0.0001 Accuracy= 0.9232
+C= 45 Gamma= 0.00022 Accuracy= 0.9248
+C= 45 Gamma= 0.00046 Accuracy= 0.9251
+C= 45 Gamma= 0.001 Accuracy= 0.9285
+C= 45 Gamma= 0.00215 Accuracy= 0.9373
+C= 45 Gamma= 0.00464 Accuracy= 0.9493
+C= 45 Gamma= 0.01 Accuracy= 0.9564
+C= 45 Gamma= 0.02154 Accuracy= 0.9583
+C= 45 Gamma= 0.04642 Accuracy= 0.9266
+C= 45 Gamma= 0.1 Accuracy= 0.4798
+C= 56 Gamma= 0.0001 Accuracy= 0.9253
+C= 56 Gamma= 0.00022 Accuracy= 0.9251
+C= 56 Gamma= 0.00046 Accuracy= 0.9245
+C= 56 Gamma= 0.001 Accuracy= 0.9269
+C= 56 Gamma= 0.00215 Accuracy= 0.9371
+C= 56 Gamma= 0.00464 Accuracy= 0.9493
+C= 56 Gamma= 0.01 Accuracy= 0.9564
+C= 56 Gamma= 0.02154 Accuracy= 0.9583
+C= 56 Gamma= 0.04642 Accuracy= 0.9266
+C= 56 Gamma= 0.1 Accuracy= 0.4798
+C= 67 Gamma= 0.0001 Accuracy= 0.9251
+C= 67 Gamma= 0.00022 Accuracy= 0.9251
+C= 67 Gamma= 0.00046 Accuracy= 0.9226
+C= 67 Gamma= 0.001 Accuracy= 0.9268
+C= 67 Gamma= 0.00215 Accuracy= 0.9372
+C= 67 Gamma= 0.00464 Accuracy= 0.9493
+C= 67 Gamma= 0.01 Accuracy= 0.9564
+C= 67 Gamma= 0.02154 Accuracy= 0.9583
+C= 67 Gamma= 0.04642 Accuracy= 0.9266
+C= 67 Gamma= 0.1 Accuracy= 0.4798
+C= 78 Gamma= 0.0001 Accuracy= 0.9241
+C= 78 Gamma= 0.00022 Accuracy= 0.9239
+C= 78 Gamma= 0.00046 Accuracy= 0.9225
+C= 78 Gamma= 0.001 Accuracy= 0.927
+C= 78 Gamma= 0.00215 Accuracy= 0.9372
+C= 78 Gamma= 0.00464 Accuracy= 0.9493
+C= 78 Gamma= 0.01 Accuracy= 0.9564
+C= 78 Gamma= 0.02154 Accuracy= 0.9583
+C= 78 Gamma= 0.04642 Accuracy= 0.9266
+C= 78 Gamma= 0.1 Accuracy= 0.4798
+C= 89 Gamma= 0.0001 Accuracy= 0.9232
+C= 89 Gamma= 0.00022 Accuracy= 0.9227
+C= 89 Gamma= 0.00046 Accuracy= 0.9223
+C= 89 Gamma= 0.001 Accuracy= 0.9266
+C= 89 Gamma= 0.00215 Accuracy= 0.9372
+C= 89 Gamma= 0.00464 Accuracy= 0.9493
+C= 89 Gamma= 0.01 Accuracy= 0.9564
+C= 89 Gamma= 0.02154 Accuracy= 0.9583
+C= 89 Gamma= 0.04642 Accuracy= 0.9266
+C= 89 Gamma= 0.1 Accuracy= 0.4798
+C= 100 Gamma= 0.0001 Accuracy= 0.9232
+C= 100 Gamma= 0.00022 Accuracy= 0.9217
+C= 100 Gamma= 0.00046 Accuracy= 0.9216
+C= 100 Gamma= 0.001 Accuracy= 0.9266
+C= 100 Gamma= 0.00215 Accuracy= 0.9372
+C= 100 Gamma= 0.00464 Accuracy= 0.9493
+C= 100 Gamma= 0.01 Accuracy= 0.9564
+C= 100 Gamma= 0.02154 Accuracy= 0.9583
+C= 100 Gamma= 0.04642 Accuracy= 0.9266
+C= 100 Gamma= 0.1 Accuracy= 0.4798
+Manual grid search RBF SVC worked:  1:44:22.709206
+SVC best parameters:
+C= 12 Gamma= 0.02154
+Apply best hyperparameter to full dataset
+SVC best accuracy:  0.9811
+Random Forest
+min_samples_split= 2 Accuracy= 0.9168
+min_samples_split= 3 Accuracy= 0.9155
+min_samples_split= 4 Accuracy= 0.9184
+min_samples_split= 5 Accuracy= 0.9188
+min_samples_split= 6 Accuracy= 0.917
+min_samples_split= 7 Accuracy= 0.9168
+min_samples_split= 8 Accuracy= 0.9152
+min_samples_split= 9 Accuracy= 0.9043
+min_samples_split= 10 Accuracy= 0.9136
+min_samples_split= 11 Accuracy= 0.9119
+min_samples_split= 12 Accuracy= 0.9192
+min_samples_split= 13 Accuracy= 0.9159
+min_samples_split= 14 Accuracy= 0.9169
+min_samples_split= 15 Accuracy= 0.9049
+min_samples_split= 16 Accuracy= 0.9163
+min_samples_split= 17 Accuracy= 0.9169
+min_samples_split= 18 Accuracy= 0.9159
+min_samples_split= 19 Accuracy= 0.9093
+min_samples_split= 20 Accuracy= 0.9076
+Best min_samples_split =  12
+Apply best hyperparameter to full dataset
+RandomForestClassifier best accuracy:  0.9419
+MultinomialNB
+MultinomialNB accuracy:  0.8184
+XGBoost
+XGBClassifier accuracy:  0.9457
+LogisticRegression
+C= 1 Accuracy= 0.8798
+C= 6 Accuracy= 0.8699
+C= 11 Accuracy= 0.8684
+C= 16 Accuracy= 0.8672
+C= 21 Accuracy= 0.8666
+C= 27 Accuracy= 0.8662
+C= 32 Accuracy= 0.8656
+C= 37 Accuracy= 0.8652
+C= 42 Accuracy= 0.8654
+C= 47 Accuracy= 0.8651
+C= 53 Accuracy= 0.8654
+C= 58 Accuracy= 0.8646
+C= 63 Accuracy= 0.865
+C= 68 Accuracy= 0.8649
+C= 73 Accuracy= 0.8652
+C= 79 Accuracy= 0.8648
+C= 84 Accuracy= 0.865
+C= 89 Accuracy= 0.8648
+C= 94 Accuracy= 0.8648
+C= 100 Accuracy= 0.8649
+Best C =  1
+Apply best hyperparameter to full dataset
+LogisticRegression best accuracy:  0.9157
+KNeighborsClassifier
+C= 1 Accuracy= 0.942
+C= 3 Accuracy= 0.9448
+C= 5 Accuracy= 0.9445
+C= 7 Accuracy= 0.9431
+C= 9 Accuracy= 0.9406
+C= 11 Accuracy= 0.9399
+C= 13 Accuracy= 0.9379
+C= 15 Accuracy= 0.9362
+C= 17 Accuracy= 0.9349
+C= 19 Accuracy= 0.9327
+C= 21 Accuracy= 0.9305
+C= 23 Accuracy= 0.9298
+C= 25 Accuracy= 0.9295
+C= 27 Accuracy= 0.9279
+C= 29 Accuracy= 0.9262
+C= 31 Accuracy= 0.9251
+C= 33 Accuracy= 0.9239
+C= 35 Accuracy= 0.9227
+C= 37 Accuracy= 0.9218
+C= 39 Accuracy= 0.922
+C= 41 Accuracy= 0.9205
+C= 43 Accuracy= 0.9192
+C= 45 Accuracy= 0.9183
+C= 47 Accuracy= 0.9169
+C= 49 Accuracy= 0.9167
+Best n_neighbors =  3
+KNeighborsClassifier
+KNeighborsClassifier best accuracy:  0.9611
+Ensemble accuracy:  0.9776

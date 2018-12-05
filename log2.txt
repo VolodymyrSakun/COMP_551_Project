@@ -1,0 +1,156 @@
+runfile('D:/MCGILL/FALL 2018/COMP 551/Project/svhnFit.py', wdir='D:/MCGILL/FALL 2018/COMP 551/Project')
+Manual grid search RBF SVC
+C= 1 Gamma= 0.0001 Accuracy= 0.1958743085433313
+C= 1 Gamma= 0.00022 Accuracy= 0.22322526121696373
+C= 1 Gamma= 0.00046 Accuracy= 0.3353180700676091
+C= 1 Gamma= 0.001 Accuracy= 0.4258220651505839
+C= 1 Gamma= 0.00215 Accuracy= 0.5882375537799631
+C= 1 Gamma= 0.00464 Accuracy= 0.6609173325138291
+C= 1 Gamma= 0.01 Accuracy= 0.6856945298094653
+C= 1 Gamma= 0.02154 Accuracy= 0.7010986478180701
+C= 1 Gamma= 0.04642 Accuracy= 0.7118546404425322
+C= 1 Gamma= 0.1 Accuracy= 0.7203057775046097
+C= 12 Gamma= 0.0001 Accuracy= 0.4623540258143823
+C= 12 Gamma= 0.00022 Accuracy= 0.6175092194222496
+C= 12 Gamma= 0.00046 Accuracy= 0.6694452980946527
+C= 12 Gamma= 0.001 Accuracy= 0.6903426551936078
+C= 12 Gamma= 0.00215 Accuracy= 0.7026736324523664
+C= 12 Gamma= 0.00464 Accuracy= 0.7092040565457898
+C= 12 Gamma= 0.01 Accuracy= 0.7116625691456668
+C= 12 Gamma= 0.02154 Accuracy= 0.7149277811923787
+C= 12 Gamma= 0.04642 Accuracy= 0.7202673632452367
+C= 12 Gamma= 0.1 Accuracy= 0.7214197910264291
+C= 23 Gamma= 0.0001 Accuracy= 0.599339274738783
+C= 23 Gamma= 0.00022 Accuracy= 0.6654886293792256
+C= 23 Gamma= 0.00046 Accuracy= 0.6881914566687154
+C= 23 Gamma= 0.001 Accuracy= 0.7023279041180086
+C= 23 Gamma= 0.00215 Accuracy= 0.707821143208359
+C= 23 Gamma= 0.00464 Accuracy= 0.7115473263675476
+C= 23 Gamma= 0.01 Accuracy= 0.7110095267363246
+C= 23 Gamma= 0.02154 Accuracy= 0.7136216963736939
+C= 23 Gamma= 0.04642 Accuracy= 0.7197295636140135
+C= 23 Gamma= 0.1 Accuracy= 0.7149661954517517
+C= 34 Gamma= 0.0001 Accuracy= 0.6435925015365703
+C= 34 Gamma= 0.00022 Accuracy= 0.6778580208973571
+C= 34 Gamma= 0.00046 Accuracy= 0.6969883220651506
+C= 34 Gamma= 0.001 Accuracy= 0.7062077443146896
+C= 34 Gamma= 0.00215 Accuracy= 0.7114320835894284
+C= 34 Gamma= 0.00464 Accuracy= 0.710318070067609
+C= 34 Gamma= 0.01 Accuracy= 0.7104717271051014
+C= 34 Gamma= 0.02154 Accuracy= 0.7138137676705593
+C= 34 Gamma= 0.04642 Accuracy= 0.7168484941610326
+C= 34 Gamma= 0.1 Accuracy= 0.7122771972956361
+C= 45 Gamma= 0.0001 Accuracy= 0.6604179471419791
+C= 45 Gamma= 0.00022 Accuracy= 0.686539643515673
+C= 45 Gamma= 0.00046 Accuracy= 0.7009834050399508
+C= 45 Gamma= 0.001 Accuracy= 0.7077443146896127
+C= 45 Gamma= 0.00215 Accuracy= 0.7112015980331899
+C= 45 Gamma= 0.00464 Accuracy= 0.7098570989551322
+C= 45 Gamma= 0.01 Accuracy= 0.7100875845113707
+C= 45 Gamma= 0.02154 Accuracy= 0.7148509526736324
+C= 45 Gamma= 0.04642 Accuracy= 0.7156576521204672
+C= 45 Gamma= 0.1 Accuracy= 0.7115089121081746
+C= 56 Gamma= 0.0001 Accuracy= 0.6706361401352182
+C= 56 Gamma= 0.00022 Accuracy= 0.6911109403810695
+C= 56 Gamma= 0.00046 Accuracy= 0.7022510755992625
+C= 56 Gamma= 0.001 Accuracy= 0.7091656422864168
+C= 56 Gamma= 0.00215 Accuracy= 0.709780270436386
+C= 56 Gamma= 0.00464 Accuracy= 0.7088967424708051
+C= 56 Gamma= 0.01 Accuracy= 0.7099723417332514
+C= 56 Gamma= 0.02154 Accuracy= 0.7150430239704979
+C= 56 Gamma= 0.04642 Accuracy= 0.7124692685925015
+C= 56 Gamma= 0.1 Accuracy= 0.7118162261831592
+C= 67 Gamma= 0.0001 Accuracy= 0.6755531653349723
+C= 67 Gamma= 0.00022 Accuracy= 0.6959511370620775
+C= 67 Gamma= 0.00046 Accuracy= 0.704479102642901
+C= 67 Gamma= 0.001 Accuracy= 0.709818684695759
+C= 67 Gamma= 0.00215 Accuracy= 0.7093577135832821
+C= 67 Gamma= 0.00464 Accuracy= 0.7088583282114321
+C= 67 Gamma= 0.01 Accuracy= 0.7097034419176398
+C= 67 Gamma= 0.02154 Accuracy= 0.7143131530424094
+C= 67 Gamma= 0.04642 Accuracy= 0.7096266133988937
+C= 67 Gamma= 0.1 Accuracy= 0.71170098340504
+C= 78 Gamma= 0.0001 Accuracy= 0.6793561770129072
+C= 78 Gamma= 0.00022 Accuracy= 0.6980255070682237
+C= 78 Gamma= 0.00046 Accuracy= 0.7064382298709281
+C= 78 Gamma= 0.001 Accuracy= 0.7109326982175783
+C= 78 Gamma= 0.00215 Accuracy= 0.7096266133988937
+C= 78 Gamma= 0.00464 Accuracy= 0.7086278426551936
+C= 78 Gamma= 0.01 Accuracy= 0.7096266133988937
+C= 78 Gamma= 0.02154 Accuracy= 0.7140058389674248
+C= 78 Gamma= 0.04642 Accuracy= 0.707859557467732
+C= 78 Gamma= 0.1 Accuracy= 0.71170098340504
+C= 89 Gamma= 0.0001 Accuracy= 0.6825829748002459
+C= 89 Gamma= 0.00022 Accuracy= 0.6991779348494161
+C= 89 Gamma= 0.00046 Accuracy= 0.7076674861708666
+C= 89 Gamma= 0.001 Accuracy= 0.7103564843269822
+C= 89 Gamma= 0.00215 Accuracy= 0.7092424708051629
+C= 89 Gamma= 0.00464 Accuracy= 0.7082437000614629
+C= 89 Gamma= 0.01 Accuracy= 0.7087430854333129
+C= 89 Gamma= 0.02154 Accuracy= 0.7129686539643516
+C= 89 Gamma= 0.04642 Accuracy= 0.7065150583896742
+C= 89 Gamma= 0.1 Accuracy= 0.71170098340504
+C= 100 Gamma= 0.0001 Accuracy= 0.6868853718500307
+C= 100 Gamma= 0.00022 Accuracy= 0.7018285187461586
+C= 100 Gamma= 0.00046 Accuracy= 0.7080900430239705
+C= 100 Gamma= 0.001 Accuracy= 0.7104333128457283
+C= 100 Gamma= 0.00215 Accuracy= 0.7089351567301783
+C= 100 Gamma= 0.00464 Accuracy= 0.7080900430239705
+C= 100 Gamma= 0.01 Accuracy= 0.7087814996926859
+C= 100 Gamma= 0.02154 Accuracy= 0.7139290104486785
+C= 100 Gamma= 0.04642 Accuracy= 0.706860786724032
+C= 100 Gamma= 0.1 Accuracy= 0.71170098340504
+Manual grid search RBF SVC worked:  1:56:08.981603
+SVC best parameters:
+C= 12 Gamma= 0.1
+Apply best hyperparameter to full dataset
+SVC best accuracy:  0.7760832821143209
+Random Forest
+min_samples_split= 2 Accuracy= 0.6417870313460357
+min_samples_split= 3 Accuracy= 0.6422864167178857
+min_samples_split= 4 Accuracy= 0.643861401352182
+min_samples_split= 5 Accuracy= 0.6432851874615857
+min_samples_split= 6 Accuracy= 0.6452059004302397
+min_samples_split= 7 Accuracy= 0.6481253841425937
+min_samples_split= 8 Accuracy= 0.6442839582052858
+min_samples_split= 9 Accuracy= 0.6456284572833436
+min_samples_split= 10 Accuracy= 0.6471650276582668
+min_samples_split= 11 Accuracy= 0.6457437000614629
+min_samples_split= 12 Accuracy= 0.6496619545175168
+min_samples_split= 13 Accuracy= 0.6500845113706207
+min_samples_split= 14 Accuracy= 0.6502765826674862
+min_samples_split= 15 Accuracy= 0.6467424708051629
+min_samples_split= 16 Accuracy= 0.6472418561770129
+min_samples_split= 17 Accuracy= 0.6485479409956976
+min_samples_split= 18 Accuracy= 0.6513137676705593
+min_samples_split= 19 Accuracy= 0.6489320835894284
+min_samples_split= 20 Accuracy= 0.6500460971112477
+Best min_samples_split =  18
+Apply best hyperparameter to full dataset
+RandomForestClassifier best accuracy:  0.6599953902888752
+KNeighborsClassifier
+n_neighbors= 1 Accuracy= 0.5125230485556238
+n_neighbors= 6 Accuracy= 0.6035264290104487
+n_neighbors= 11 Accuracy= 0.6274969268592502
+n_neighbors= 16 Accuracy= 0.6407882606023356
+n_neighbors= 21 Accuracy= 0.6463583282114321
+n_neighbors= 27 Accuracy= 0.6508143822987092
+n_neighbors= 32 Accuracy= 0.6537338660110633
+n_neighbors= 37 Accuracy= 0.6549631223110018
+n_neighbors= 42 Accuracy= 0.6544637369391518
+n_neighbors= 47 Accuracy= 0.6559618930547019
+n_neighbors= 53 Accuracy= 0.6549631223110018
+n_neighbors= 58 Accuracy= 0.6540795943454211
+n_neighbors= 63 Accuracy= 0.6542716656422864
+n_neighbors= 68 Accuracy= 0.6540027658266748
+n_neighbors= 73 Accuracy= 0.6541180086047941
+n_neighbors= 79 Accuracy= 0.6529271665642287
+n_neighbors= 84 Accuracy= 0.6527350952673633
+n_neighbors= 89 Accuracy= 0.6527735095267363
+n_neighbors= 94 Accuracy= 0.6522357098955132
+n_neighbors= 100 Accuracy= 0.6528887523048555
+Best n_neighbors =  47
+KNeighborsClassifier
+KNeighborsClassifier best accuracy:  0.6901121696373694
+XGBoost
+XGBClassifier accuracy:  0.6903810694529809
