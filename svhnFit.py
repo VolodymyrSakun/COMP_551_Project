@@ -18,7 +18,11 @@ shape=(32, 32)
 xHogTrainFull, yHogTrainFull = utils.rgbToHOG(os.path.join(setDit, 'train_32x32.mat'), pixelsPerCell=(8, 8))
 xHogTest, yHogTest = utils.rgbToHOG(os.path.join(setDit, 'test_32x32.mat'), pixelsPerCell=(8, 8))
 
-#######################################################################
+xHogTrain = xHogTrainFull
+yHogTrain = yHogTrainFull
+xHogTrain, yHogTrain = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # for testing
+
+###############################################################################
 # take random observations to reduce data size
 x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 1000)
 
@@ -67,7 +71,7 @@ classifierSVC = svm.SVC(C=cBest, kernel='rbf', gamma=gammaBest,\
     coef0=0.0, shrinking=True, probability=False, tol=0.001, cache_size=200,\
     class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovr',\
     random_state=None)
-classifierSVC.fit(xHogTrainFull, yHogTrainFull)            
+classifierSVC.fit(xHogTrain, yHogTrain)            
 yForecastSVC = classifierSVC.predict(xHogTest) 
 scoreSVC = utils.getScore(yHogTest, yForecastSVC)
 print('SVC best accuracy: ', scoreSVC['Accuracy'])
@@ -117,7 +121,7 @@ classifierRF = RandomForestClassifier(n_estimators=10, criterion='entropy',\
     min_weight_fraction_leaf=0.0, max_features=None, max_leaf_nodes=None,\
     min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True,\
     oob_score=False, warm_start=False, class_weight=None, n_jobs=4)
-classifierRF.fit(xHogTrainFull, yHogTrainFull)            
+classifierRF.fit(xHogTrain, yHogTrain)            
 yForecastRF = classifierRF.predict(xHogTest) 
 scoreRF = utils.getScore(yHogTest, yForecastRF)
 print('RandomForestClassifier best accuracy: ', scoreRF['Accuracy'])
@@ -127,7 +131,7 @@ print('RandomForestClassifier best accuracy: ', scoreRF['Accuracy'])
 x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # reduce set size
 
 print("KNeighborsClassifier") 
-space = np.linspace(1, 20, 19, dtype=int)
+space = np.linspace(1, 100, 20, dtype=int)
 accuracy = []
 for i in space:
     classifierKNN = KNeighborsClassifier(n_neighbors=i, weights='uniform',\
@@ -161,7 +165,7 @@ plt.savefig('{}{}'.format(title, '.png'))
 print("KNeighborsClassifier") 
 classifierKNN = KNeighborsClassifier(n_neighbors=space[best_index], weights='uniform',\
     algorithm='auto', leaf_size=30, p=2, metric='minkowski')
-classifierKNN.fit(xHogTrainFull, yHogTrainFull)       
+classifierKNN.fit(xHogTrain, yHogTrain)       
 yForecastKNN = classifierKNN.predict(xHogTest) 
 scoreKNN = utils.getScore(yHogTest, yForecastKNN)
 print('KNeighborsClassifier best accuracy: ', scoreKNN['Accuracy'])
@@ -173,7 +177,7 @@ classifierXG = XGBClassifier(max_depth=10, learning_rate=0.1, n_estimators=10,\
     n_jobs=4, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1,\
     colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1,\
     scale_pos_weight=1, base_score=0.5, seed=None, missing=None)
-classifierXG.fit(xHogTrainFull, yHogTrainFull)      
+classifierXG.fit(xHogTrain, yHogTrain)      
 yForecastXG = classifierXG.predict(xHogTest) 
 yForecastProbaXG = classifierXG.predict_proba(xHogTest)
 scoreXG = utils.getScore(yHogTest, yForecastXG)
