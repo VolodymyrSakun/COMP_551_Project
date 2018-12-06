@@ -23,24 +23,23 @@ train = np.load(os.path.join(setDit, "train.npy"), encoding='latin1')
 valid = np.load(os.path.join(setDit, "validation.npy"), encoding='latin1')
 test = np.load(os.path.join(setDit, "test.npy"), encoding='latin1')
 # load labels
-yTtrain = np.load(os.path.join(setDit, "train_labels.npy"), encoding='latin1')
+yTrain = np.load(os.path.join(setDit, "train_labels.npy"), encoding='latin1')
 yValid = np.load(os.path.join(setDit, "validation_labels.npy"), encoding='latin1')
 yTest = np.load(os.path.join(setDit, "test_labels.npy"), encoding='latin1')
 # convert images to B/W
-xTtrain = utils.toBW(train)
+xTrain = utils.toBW(train)
 xValid = utils.toBW(valid)
 xTest = utils.toBW(test)
 # combibe training and validation sets
-xTrainFull = np.concatenate((xTtrain, xValid), axis=0)
-yTrainFull = np.concatenate((yTtrain, yValid))
+xTrainFull = np.concatenate((xTrain, xValid), axis=0)
+yTrainFull = np.concatenate((yTrain, yValid))
 nClasses = len(np.unique(yTrainFull))
 
-xTrain = xTrainFull
-yTrain = yTrainFull
-#xTrain, yTrain = utils.cutSet(xTrainFull, yTrainFull, 1000) # for testing
+#xTrain, yTrain = utils.cutSet(xTrain, yTrain, 100) # for testing
+#xTrainFull, yTrainFull = utils.cutSet(xTrainFull, yTrainFull, 100) # for testing
 
 ###############################################################################
-x, y = utils.cutSet(xTrainFull, yTrainFull, 5000) # for testing
+x, y = utils.cutSet(xTrain, yTrain, 5000) # for testing
 
 print("Manual grid search RBF SVC")
 cRange = np.linspace(1, 100, 10, dtype=int)
@@ -56,8 +55,8 @@ for c in cRange:
             class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovr',\
             random_state=None)
         classifierSVC.fit(x, y)            
-        yForecastSVC = classifierSVC.predict(xTest) 
-        scoreSVC = utils.getScore(yTest, yForecastSVC)
+        yForecastSVC = classifierSVC.predict(xValid) 
+        scoreSVC = utils.getScore(yValid, yForecastSVC)
         results.loc[c, gamma] = scoreSVC['Accuracy']
         print('{} {} {} {} {} {}'.format('C=', c, 'Gamma=', gamma, 'Accuracy=', scoreSVC['Accuracy']))
         
@@ -87,7 +86,7 @@ classifierSVC = svm.SVC(C=cBest, kernel='rbf', gamma=gammaBest,\
     coef0=0.0, shrinking=True, probability=True, tol=0.001, cache_size=200,\
     class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovr',\
     random_state=None)
-classifierSVC.fit(xTrain, yTrain)            
+classifierSVC.fit(xTrainFull, yTrainFull)            
 yForecastSVC = classifierSVC.predict(xTest) 
 yForecastProbaSVC = classifierSVC.predict_proba(xTest)
 scoreSVC = utils.getScore(yTest, yForecastSVC)
@@ -95,7 +94,7 @@ print('SVC best accuracy: ', scoreSVC['Accuracy'])
 
 ###############################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xTrainFull, yTrainFull, 10000)
+x, y = utils.cutSet(xTrain, yTrain, 10000)
 
 print("Random Forest") 
 space = np.linspace(2, 20, 19, dtype=int)
@@ -107,8 +106,8 @@ for i in space:
         min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True,\
         oob_score=False, warm_start=False, class_weight=None, n_jobs=4)
     classifierRF.fit(x, y)            
-    yForecastRF = classifierRF.predict(xTest) 
-    scoreRF = utils.getScore(yTest, yForecastRF)
+    yForecastRF = classifierRF.predict(xValid) 
+    scoreRF = utils.getScore(yValid, yForecastRF)
     accuracy.append(scoreRF['Accuracy'])
     print('{} {} {} {}'.format('min_samples_split=', i, 'Accuracy=', scoreRF['Accuracy']))
 
@@ -138,7 +137,7 @@ classifierRF = RandomForestClassifier(n_estimators=10, criterion='entropy',\
     min_weight_fraction_leaf=0.0, max_features=None, max_leaf_nodes=None,\
     min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True,\
     oob_score=False, warm_start=False, class_weight=None, n_jobs=4)
-classifierRF.fit(xTrain, yTrain)            
+classifierRF.fit(xTrainFull, yTrainFull)            
 yForecastRF = classifierRF.predict(xTest) 
 yForecastProbaRF = classifierRF.predict_proba(xTest)
 scoreRF = utils.getScore(yTest, yForecastRF)
@@ -160,7 +159,7 @@ classifierXG = XGBClassifier(max_depth=10, learning_rate=0.1, n_estimators=10,\
     n_jobs=4, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1,\
     colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1,\
     scale_pos_weight=1, base_score=0.5, seed=None, missing=None)
-classifierXG.fit(xTrain, yTrain)      
+classifierXG.fit(xTrainFull, yTrainFull)      
 yForecastXG = classifierXG.predict(xTest) 
 yForecastProbaXG = classifierXG.predict_proba(xTest)
 scoreXG = utils.getScore(yTest, yForecastXG)
@@ -169,7 +168,7 @@ print('XGBClassifier accuracy: ', scoreXG['Accuracy'])
 ###############################################################################
 
 # take random observations to reduce data size
-x, y = utils.cutSet(xTrainFull, yTrainFull, 5000)
+x, y = utils.cutSet(xTrain, yTrain, 5000)
 
 print("LogisticRegression") 
 space = np.linspace(1, 100, 20, dtype=int)
@@ -180,8 +179,8 @@ for i in space:
         random_state=None, solver='sag', max_iter=10000, multi_class='multinomial',\
         verbose=0, warm_start=False, n_jobs=4)
     classifierLR.fit(x, y)     
-    yForecastLR = classifierLR.predict(xTest) 
-    scoreLR = utils.getScore(yTest, yForecastLR)
+    yForecastLR = classifierLR.predict(xValid) 
+    scoreLR = utils.getScore(yValid, yForecastLR)
     accuracy.append(scoreLR['Accuracy'])
     print('{} {} {} {}'.format('C=', i, 'Accuracy=', scoreLR['Accuracy']))
 
@@ -210,7 +209,7 @@ classifierLR = LogisticRegression(penalty='l2', dual=False, tol=0.0001,\
     C=space[best_index], fit_intercept=False, intercept_scaling=1, class_weight=None,\
     random_state=None, solver='sag', max_iter=1000, multi_class='multinomial',\
     verbose=0, warm_start=False, n_jobs=4)
-classifierLR.fit(xTrain, yTrain)     
+classifierLR.fit(xTrainFull, yTrainFull)     
 yForecastLR = classifierLR.predict(xTest) 
 yForecastProbaLR = classifierLR.predict_proba(xTest)
 scoreLR = utils.getScore(yTest, yForecastLR)
@@ -228,8 +227,8 @@ for i in space:
     classifierKNN = KNeighborsClassifier(n_neighbors=i, weights='uniform',\
         algorithm='auto', leaf_size=30, p=2, metric='minkowski')
     classifierKNN.fit(x, y)       
-    yForecastKNN = classifierKNN.predict(xTest) 
-    scoreKNN = utils.getScore(yTest, yForecastKNN)
+    yForecastKNN = classifierKNN.predict(xValid) 
+    scoreKNN = utils.getScore(yValid, yForecastKNN)
     accuracy.append(scoreKNN['Accuracy'])
     print('{} {} {} {}'.format('C=', i, 'Accuracy=', scoreKNN['Accuracy']))
 
@@ -256,7 +255,7 @@ plt.savefig('{}{}'.format(title, '.png'))
 print("KNeighborsClassifier") 
 classifierKNN = KNeighborsClassifier(n_neighbors=space[best_index], weights='uniform',\
     algorithm='auto', leaf_size=30, p=2, metric='minkowski')
-classifierKNN.fit(xTrain, yTrain)       
+classifierKNN.fit(xTrainFull, yTrainFull)       
 yForecastKNN = classifierKNN.predict(xTest) 
 yForecastProbaKNN = classifierKNN.predict_proba(xTest)
 scoreKNN = utils.getScore(yTest, yForecastKNN)

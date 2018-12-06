@@ -15,16 +15,16 @@ from numpy import unravel_index
 workingDir = os.getcwd()
 setDit = os.path.join(workingDir, 'SVHN')
 shape=(32, 32)
-xHogTrainFull, yHogTrainFull = utils.rgbToHOG(os.path.join(setDit, 'train_32x32.mat'), pixelsPerCell=(8, 8))
+
+xHogTrain, yHogTrain = utils.rgbToHOG(os.path.join(setDit, 'train_32x32.mat'), pixelsPerCell=(8, 8))
+xHogValid, yHogValid = utils.rgbToHOG(os.path.join(setDit, 'extra_32x32.mat'), pixelsPerCell=(8, 8), nRecords=20000)
 xHogTest, yHogTest = utils.rgbToHOG(os.path.join(setDit, 'test_32x32.mat'), pixelsPerCell=(8, 8))
 
-xHogTrain = xHogTrainFull
-yHogTrain = yHogTrainFull
-#xHogTrain, yHogTrain = utils.cutSet(xHogTrainFull, yHogTrainFull, 1000) # for testing
+#xHogTrain, yHogTrain = utils.cutSet(xHogTrain, yHogTrain, 100) # for testing
 
 ###############################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000)
+x, y = utils.cutSet(xHogTrain, yHogTrain, 10000)
 
 print("Manual grid search RBF SVC")
 cRange = np.linspace(1, 100, 10, dtype=int)
@@ -40,8 +40,8 @@ for c in cRange:
             class_weight=None, verbose=False, max_iter=-1, decision_function_shape='ovr',\
             random_state=None)
         classifierSVC.fit(x, y)            
-        yForecastSVC = classifierSVC.predict(xHogTest) 
-        scoreSVC = utils.getScore(yHogTest, yForecastSVC)
+        yForecastSVC = classifierSVC.predict(xHogValid) 
+        scoreSVC = utils.getScore(yHogValid, yForecastSVC)
         results.loc[c, gamma] = scoreSVC['Accuracy']
         print('{} {} {} {} {} {}'.format('C=', c, 'Gamma=', gamma, 'Accuracy=', scoreSVC['Accuracy']))
         
@@ -78,7 +78,7 @@ print('SVC best accuracy: ', scoreSVC['Accuracy'])
 
 ###################################################################
 # take random observations to reduce data size
-x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 50000)
+x, y = utils.cutSet(xHogTrain, yHogTrain, 50000)
 
 print("Random Forest") 
 space = np.linspace(2, 20, 19, dtype=int)
@@ -90,8 +90,8 @@ for i in space:
         min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True,\
         oob_score=False, warm_start=False, class_weight=None, n_jobs=4)
     classifierRF.fit(x, y)            
-    yForecastRF = classifierRF.predict(xHogTest) 
-    scoreRF = utils.getScore(yHogTest, yForecastRF)
+    yForecastRF = classifierRF.predict(xHogValid) 
+    scoreRF = utils.getScore(yHogValid, yForecastRF)
     accuracy.append(scoreRF['Accuracy'])
     print('{} {} {} {}'.format('min_samples_split=', i, 'Accuracy=', scoreRF['Accuracy']))
 
@@ -127,7 +127,7 @@ scoreRF = utils.getScore(yHogTest, yForecastRF)
 print('RandomForestClassifier best accuracy: ', scoreRF['Accuracy'])
 
 ###############################################################################
-x, y = utils.cutSet(xHogTrainFull, yHogTrainFull, 10000) # reduce set size
+x, y = utils.cutSet(xHogTrain, yHogTrain, 10000) # reduce set size
 
 print("KNeighborsClassifier") 
 space = np.linspace(1, 100, 20, dtype=int)
@@ -136,8 +136,8 @@ for i in space:
     classifierKNN = KNeighborsClassifier(n_neighbors=i, weights='uniform',\
         algorithm='auto', leaf_size=30, p=2, metric='minkowski')
     classifierKNN.fit(x, y)       
-    yForecastKNN = classifierKNN.predict(xHogTest) 
-    scoreKNN = utils.getScore(yHogTest, yForecastKNN)
+    yForecastKNN = classifierKNN.predict(xHogValid) 
+    scoreKNN = utils.getScore(yHogValid, yForecastKNN)
     accuracy.append(scoreKNN['Accuracy'])
     print('{} {} {} {}'.format('n_neighbors=', i, 'Accuracy=', scoreKNN['Accuracy']))
 
