@@ -1,0 +1,51 @@
+MNIST
+
+Data preprocessing:
+
+For MNIST dataset we used only transformation from grayscale format to black and white since color gradient is not necessary for digit recognition
+We think that fitting binary reatures takes less time and computational resources.
+MNIST set contains of train, validation and test sets.
+We used training set to train models with different hyperparameters and validation set to get metrics.
+The final fit was trained using training + validation sets for training and test set for accuracy evaluation.
+
+We run svm because it is mentionned as a baseline in the article.
+Also we found in other articles that svm with RBF kernel can be used for image classification.
+Squared Exponential Kernel or Radial Basis Function kernel or RBF is the Gaussian kernel. It is universal and have some nice properties.
+Every function in its prior has infinetely many derivatives. It has only two parameters: length scale - the length of wiggles in the function 
+and variance - average dictance of the function from mean.
+
+We tried svc with linear kernel. It works as well but the accuracy is worth (not included in the report).
+Sklearn gas svc classifier that has two major hyper parameters: penalty parameter C for error term and gamma - kernel coefficient for RBF that we used.
+As a decision function we used one-vs-rest wich is used for multiclass problems.
+To perform the best fit we had to find the best pair of (C, gamma), therefore we used exhaustive grid search in range [1..100] for C and [0.0001..0.1] for gamma.
+The heatmap with values of accuracy obtained from validation set is presented in this report.
+
+We tried another classifiers in order to obtain the best possible fit to use it in ensemble classificeation 
+We used similar to svc approach to get best hyperparameters for Random forest, Logistic regression and KNeighborsClassifier.
+We selected only the best three classifiers with highest accuracy which are SVM with RBF kernel, Random Forest and KNN.
+They all gave accuracy > 0.95.
+Finally we combined those results using majority voting to get final prediction. 
+Accuracy obtained is very close to mentionned in the article.
+
+Since svc with RBF kernel performs fitting wery slowly, we had to reduce training set to some reasonable number in order to do fitting before deadline
+SVC works 8 hours for one fit using full training set.
+
+SVHN
+
+Another set from article is more complex to fit since it contains true images of digits made by running car.
+
+Data preprocessing:
+
+We used all data from training ant test sets and 20000 from extra set for validation (it is huge).
+
+Converting to B/W format is impossible in this case so we tried grayscale format.
+Results were very poor, so we tried to use Histogram of oriented gradients (HOG) from skikit-image to extract usefull features from images.
+This method is commonly used for image processing for object detection.
+Also we tried contours from openCV but this procedure did not give feasible results.
+
+Another good thing in using HOG that it performs dimensionnality reduction. Therefore all fitting algorithms worked faster then using original data.
+
+The remaining procedure is similar to MINST set but we used only four best classifiers found from previous set.
+
+Final results are not very impressive but it was expected knowing the nature of images.
+
